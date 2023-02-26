@@ -1,0 +1,159 @@
+<p>invoice-master works!</p>
+<h1>Invoice</h1>
+<div
+  class="container"
+  style="border: 4px solid black; margin: 10px; padding: 5px"
+>
+  <div class="row">
+    <div class="col-md-4">
+      <label class="form-label"> Product Name</label>
+    </div>
+    <div class="col-md-4">
+      <select class="form-control" #productname (change)="onSelectedProductName()">
+        <option default>Select Product Name</option>
+        <option *ngFor="let item of allProduct">{{ item.Name }}</option>
+      </select>
+
+      <!-- <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="newPost.ProductName"
+        placeholder="Please Product name......"
+      /> -->
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4">
+      <label class="form-label"> Product Detail</label>
+    </div>
+    <div class="col-md-4">
+      <input
+        class="form-control"
+        type="text"
+        [(ngModel)]="newPost.Detail"
+        placeholder="Please Enter Detail......"
+      />
+    </div>
+  </div>
+</div>
+<h1>Invoice Details</h1>
+
+<div
+  class="container"
+  style="border: 4px solid black; margin: 10px; padding: 5px"
+>
+  <div class="row">
+    <div class="col-md-4">
+      <label class="form-label"> Product Color</label>
+    </div>
+    <div class="col-md-4">
+      <select class="form-control" #color (change)="onSelectedColor()">
+        <option default>Select Color</option>
+        <option>ORANGE</option>
+        <option>YELLOW</option>
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <label class="form-label"> Product Quantity</label>
+    </div>
+    <div class="col-md-4">
+      <input
+        class="form-control"
+        type="text"
+        [(ngModel)]="newPost.Quantity"
+        placeholder="Please Enter Quantity......"
+      />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <label class="form-label"> Product Size</label>
+    </div>
+    <div class="col-md-4">
+      <select
+        class="form-control"
+        #productsize
+        (change)="onSelectedProductSize()"
+      >
+        <option>Select Size</option>
+        <option default>XXL</option>
+        <option>L</option>
+        <option>XL</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<div>
+  <button class="btn btn-primary" (click)="addProductDetails()">
+    Add Product
+  </button>
+</div>
+
+<div
+  class="container"
+  style="border: 4px solid black; margin: 10px; padding: 5px"
+>
+  <h1>Added Product product details</h1>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <td>#</td>
+        <td>Product Name</td>
+        <td>Detail</td>
+        <td>Color</td>
+        <td>Quantity</td>
+        <td>Size</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of posts; let i = index">
+        <td>{{ i }}</td>
+        <td>{{ item.ProductName }}</td>
+        <td>{{ item.Detail }}</td>
+        <td>{{ item.Color }}</td> 
+        <td>{{ item.Quantity }}</td>
+        <td>{{ item.Size }}</td>
+        <td>
+          <button class="btn btn-primary" (click)="removeItem(i)">
+            Remove
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div>
+  <button class="btn btn-primary" (click)="saveProductDetails()">
+    Save Product
+  </button>
+</div>
+
+<div
+  class="container"
+  style="border: 4px solid black; margin: 10px; padding: 5px"
+>
+  <h1>All Saved Invoice</h1>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <td>Product Name</td>
+        <td>Color</td>
+        <td>Quantity</td>
+        <td>Size</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of savedPosts">
+        <td>{{ item.ProductName }}</td>
+        <td>{{ item.Color }}</td>
+        <td>{{ item.Quantity }}</td>
+        <td>{{ item.Size }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
